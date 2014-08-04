@@ -76,11 +76,17 @@ public class SubtypemoduleDaoImp implements ISubtypemoduleDao {
 		//根据非主键修改，hql方法见梁炎的部分，这里改用Criteria
 		//Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Coursetype.class);
 		//criteria.add(Restrictions.eq("id", coursetype.getId()));
+		getSession().clear();
+		Coursetype coursetype = new Coursetype();
+		coursetype.setId(subtypemodule.getCourse_type());
 		
-		Query query = sessionFactory.getCurrentSession().createQuery("from Subtypemodule where id=?");
-		query.setInteger(0, subtypemodule.getId());
-		Subtypemodule temp = (Subtypemodule )query.uniqueResult();
-		temp.setSubtypemodule(subtypemodule);		
+		Subtype subtype = new Subtype();
+		subtype.setId(subtypemodule.getSubtype_name());
+		
+		subtypemodule.setCoursetype(coursetype);
+		subtypemodule.setSubtype(subtype);
+		
+		getSession().update(subtypemodule);
 	}
 	
 	@SuppressWarnings("unchecked")
