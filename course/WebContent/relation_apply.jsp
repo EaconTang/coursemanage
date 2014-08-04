@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+﻿<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html >
@@ -42,12 +42,18 @@
 					</tr>
 				</thead>
 				<tbody class="text-center">
-					<s:iterator value="" var="">
+					<tr>
+						<td></td>
+						<td><s:property value="#res"/></td>
+					</tr>
+					<!--  
+					<s:iterator value="pcoslist" var="">
 		                <tr>
 		                    <td><s:property value=""/></td>
 		                    <td><s:property value=""/></td>
 		                </tr>
 		        	</s:iterator>
+		        	-->
 				</tbody>
 			</table>
 		</div>
@@ -63,7 +69,7 @@
 					</thead>
 	            	<tbody class="text-center">
 						<tr>
-							<td><input type="text" name="course"></td>
+							<td><input type="text" name="cosid"></td>
 							<td><input type="text" name="relationString"></td>
 							<td><input type="text" name="op"></td>
 						</tr>
