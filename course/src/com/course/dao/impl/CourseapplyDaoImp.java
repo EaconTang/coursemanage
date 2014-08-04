@@ -94,7 +94,7 @@ public class CourseapplyDaoImp implements ICourseapplyDao {
 	public void modifycommitCourseapply(Courseapply courseapply) {
 		
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Courseapply.class);
-		criteria.add(Restrictions.eq("c_course_name", courseapply.getC_course_name()));
+		criteria.add(Restrictions.eq("id", courseapply.getId()));
 		Courseapply temp = (Courseapply)criteria.uniqueResult();
 		//temp.setStatus(1);
 		//temp.setCourseapply(courseapply);
@@ -174,7 +174,7 @@ public class CourseapplyDaoImp implements ICourseapplyDao {
 	@Override
 	public void modifyapprovalCourseapply(Courseapply courseapply){
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Courseapply.class);
-		criteria.add(Restrictions.eq("c_course_name", courseapply.getC_course_name()));
+		criteria.add(Restrictions.eq("id", courseapply.getId()));
 		Courseapply temp = (Courseapply)criteria.uniqueResult();
 		//temp.setStatus(1);
 		//temp.setCourseapply(courseapply);

@@ -207,5 +207,10 @@ public class Courseapply {
 		this.degree = degree;
 	}
 	
+	public String returnDegree(){
+		if(isDegree() == true)
+			return "true";
+		return "false";
+	}
 	
 }

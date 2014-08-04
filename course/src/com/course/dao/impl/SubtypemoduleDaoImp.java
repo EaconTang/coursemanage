@@ -12,6 +12,8 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;  
 
 import com.course.dao.ISubtypemoduleDao;
+import com.course.entity.Course;
+import com.course.entity.Courseapply;
 import com.course.entity.Coursetype;
 import com.course.entity.Subtype;
 import com.course.entity.Subtypemodule;
@@ -52,7 +54,17 @@ public class SubtypemoduleDaoImp implements ISubtypemoduleDao {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Subtypemodule.class);
 		criteria.add(Restrictions.eq("id", subtypemodule.getId()));
 		subtypemodule = (Subtypemodule) criteria.uniqueResult();
-		sessionFactory.getCurrentSession().delete(subtypemodule);
+		
+		Criteria temp3 = sessionFactory.getCurrentSession().createCriteria(Course.class);
+		temp3.add(Restrictions.eq("subtypemodule.id", subtypemodule.getId()));
+		
+		Criteria temp4 = sessionFactory.getCurrentSession().createCriteria(Courseapply.class);
+		temp4.add(Restrictions.eq("subtypemodule.id", subtypemodule.getId()));
+		
+		if((temp3.list().size() == 0)  &&  (temp4.list().size() == 0)){
+			sessionFactory.getCurrentSession().delete(subtypemodule);
+		}
+		
 	}
 	
 

@@ -15,6 +15,7 @@ public class Course {
 	Date approval_time;
 	boolean degree;// (鏄惁瀛﹀＋瀛︿綅锛屽尰绉戦�濉�
 	int status;//
+	//开设单位:sis_comm_yxxx
 	String info;
 
 	private Coursetype coursetype;
@@ -210,5 +211,9 @@ public class Course {
 	public void setInfo(String info) {
 		this.info = info;
 	}
-
+	public String returnDegree(){
+		if(isDegree() == true)
+			return "true";
+		return "false";
+	}
 }
