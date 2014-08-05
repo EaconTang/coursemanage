@@ -34,8 +34,7 @@
 			<table id="show" class="table table-hover table-bordered">
 	            <thead>
 		            <tr>
-		            	 
-		            	<th class="text-center">id</th>
+		            	<th class="text-center">ID</th>
 		                <th class="text-center">课程类别细类模块名称</th>
 						<th class="text-center">课程细类码</th>
 						<th class="text-center">课程细类名称</th>
@@ -49,7 +48,7 @@
 		                <tr>
 		                    <td><s:property value="#subtypemodule.id"/></td>
 		                    <td><s:property value="#subtypemodule.module_name"/></td>
-		               		<td><s:property value="#subtypemodule.subtype_code"/></td>
+		                    <td><s:property value="#subtypemodule.subtype_code"/></td>
 		                    <td><s:property value="#subtypemodule.subtype.id"/></td>
 		                    <td><s:property value="#subtypemodule.coursetype.id"/></td>
 		                    <td><s:property value="#subtypemodule.version"/></td>
@@ -64,7 +63,7 @@
 				<table id="cin" class="table table-bordered">
 					<thead>
 			            <tr>
-			            	<th class="text-center">id</th>
+			            	<th class="text-center">ID</th>
 			                <th class="text-center">课程类别细类模块名称</th>
 							<th class="text-center">课程细类码</th>
 							<th class="text-center">课程细类名称</th>
@@ -89,7 +88,12 @@
 						<tr>
 							<td><input type="text" name="subtypemodule.course_type"></td>
 							<td><input type="text" name="subtypemodule.version"></td>
-							<td><input type="text" name="subtypemodule.public_subtype"></td>
+							<td>
+								<select name="subtypemodule.public_subtype" class="form-control">
+									<option value="公共细类">公共细类</option>
+									<option value="非公共细类">非公共细类</option>
+								</select>
+							</td>
 						</tr>
 					</tbody>
 				</table>

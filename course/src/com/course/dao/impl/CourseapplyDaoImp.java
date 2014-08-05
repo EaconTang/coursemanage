@@ -71,6 +71,7 @@ public class CourseapplyDaoImp implements ICourseapplyDao {
 		courseapply.setSubtype(subtype);
 		courseapply.setSubtypemodule(subtypemodule);
 		
+		courseapply.setStatus("δ�ύ");
 		//c.setInfo(cos.getInfo());
 		getSession().update(courseapply);
 	}

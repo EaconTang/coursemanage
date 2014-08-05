@@ -25,13 +25,12 @@
 				<li><a href="#"><strong>新增课程审批</strong></a></li>
 				<li><a href="javascript:void(0);" onclick="Winopen('MODIFY')">审批</a></li>
 				<li><a href="javascript:void(0);" onclick="Winopen('QUERY')">查询</a></li>
-				<li><a href="javascript:void(0);" onclick="OutputToExcel()">导出</a></li>
 				<li class="pull-right"><a href="home">返回</a></li> 
 			</ul>
 			<table id="show" class="table table-hover table-bordered">
 				<thead>
 		            <tr>
-		            	<th class="text-center">id</th>
+		            	<th class="text-center">ID</th>
 		            	<th class="text-center">状态</th>
 		                <th class="text-center">课程中文名</th>
 		            	<th class="text-center">院系课程号</th>
@@ -79,7 +78,7 @@
 					<table id="cin" class="table table-bordered">
 						<thead>
 				            <tr>
-				            	<th class="text-center">id</th>
+				            	<th class="text-center">ID</th>
 				            	<th class="text-center">状态</th>
 				                <th class="text-center">课程中文名</th>
 				            	<th class="text-center">院系课程号</th>
@@ -92,7 +91,7 @@
 								<td><input id="pk" type="text" name="courseapply.id"></td>
 								<td><input id="ic" type="text" name="courseapply.status"/></td>
 								<td><input type="text" name="courseapply.c_course_name"></td>
-								<td><input type="text" name="courseapply.institute_course"></td>
+								<td><input type="text" name="courseapply.institute_course_id"></td>
 								<td><input type="text" name="courseapply.e_course_name"></td>
 								<td><input type="text" name="courseapply.brief_course_name"/></td>
 							</tr>
@@ -130,7 +129,12 @@
 								<td><input type="text" name="courseapply.course_time_info"></td>
 								<td><input type="text" name="courseapply.course_info"></td>
 								<td><input type="text" name="courseapply.course_head"/></td>
-								<td><input type="text" name="courseapply.degree"></td>
+								<td>
+									<select name="courseapply.degree" class="form-control">
+										<option value="学位课">学位课</option>
+										<option value="非学位课">非学位课</option>
+									</select>
+								</td>
 							</tr>
 						</tbody>
 						
@@ -258,13 +262,6 @@
 		{
 			var myform=document.forms[0];
 			myform.action="courseapproval_queryCourseapproval";
-			myform.method="post";
-			myform.submit();
-		}
-		function OutputToExcel()
-		{
-			var myform=document.forms[0];
-			myform.action="courseapply_QueryCourseapprovalOutputToExcel";
 			myform.method="post";
 			myform.submit();
 		}

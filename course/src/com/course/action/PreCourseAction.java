@@ -8,8 +8,9 @@ import javax.annotation.Resource;
 import com.course.entity.Course;
 import com.course.entity.PreCourse;
 import com.course.service.IPreCourseManage;
+import com.opensymphony.xwork2.ActionSupport;
 
-public class PreCourseAction {
+public class PreCourseAction extends ActionSupport{
 	private String relationString;
 	private String op;
 	private int cosid;
@@ -166,33 +167,36 @@ public class PreCourseAction {
 
 	}
 
-	public void addPreCourse() {
+	public String addPreCourse() {
 		System.out.println("------addPreCourseAction------");
 		this.string2list(0);
 		for (int i = 0; i < pcoslist.size() && !relationString.equals(""); i++) {
 			pcourseManage.addPreCourse(pcoslist.get(i));
 		}
+		return "success";
 	}
 
-	public void applyPreCourse() {
+	public String applyPreCourse() {
 		System.out.println("------applyPreCourseAction------");
 		this.string2list(0);
 		Course cos = new Course();
 		cos.setId(cosid);
 		if (pcourseManage.queryPreCourse(cos).size() != 0)
-			return;
+			return "fail";
 		for (int i = 0; i < pcoslist.size(); i++) {
 			pcourseManage.addPreCourse(pcoslist.get(i));
 		}
+		return "success";
 	}
 
-	public void approvePreCourse() {
+	public String approvePreCourse() {
 		System.out.println("------approvePreCourseAction------");
 
 		pcoslist = new ArrayList<PreCourse>();
 		cos = new Course();
 		cos.setId(cosid);
 		pcourseManage.approvePreCourse(cos, isApprove);
+		return "success";
 	}
 
 	public String queryPreCourse() {
@@ -208,6 +212,7 @@ public class PreCourseAction {
 		 * pcoslist.get(i).getOp()); }
 		 */
 		queryPreCourseResultString();
+		queryPreCourseResultList();
 		return "success";
 	}
 
@@ -286,6 +291,15 @@ public class PreCourseAction {
 				tmpcos = new Course();
 				tmpcos.setId(currentrecord.getCos().getId());
 				tmpcos.setC_course_name(currentrecord.getCos().getC_course_name());
+				if(currentrecord.getStatus()==0){
+					tmpcos.setStatus("待审批");
+				}
+				if(currentrecord.getStatus()==1){
+					tmpcos.setStatus("审批通过");
+				}
+				if(currentrecord.getStatus()==-1){
+					tmpcos.setStatus("审批不通过");
+				}
 				resbuff.append(")");
 				tmpcos.setInfo(resbuff.toString());
 				reslist.add(tmpcos);
@@ -296,24 +310,30 @@ public class PreCourseAction {
 		}
 		System.out.println("This is querylist:\n");
 		for (Course ctmp : reslist) {
-			System.out.println("" + ctmp.getId() + " " + ctmp.getC_course_name() + " " + ctmp.getInfo());
+			System.out.println("" + ctmp.getId() + " " + ctmp.getC_course_name() + " " + ctmp.getInfo()
+					+" "+ctmp.getStatus());
 		}
 
 	}
 
-	public void deletePreCourse() {
+	public String deletePreCourse() {
 		System.out.println("------deletePreCourseAction------");
 		cos = new Course();
 		cos.setId(cosid);
 		pcourseManage.deletePreCourse(cos);
+		return "success";
 	}
 
-	public void modifyPreCourse() {
+	public String modifyPreCourse() {
 		System.out.println("------modifyPreCourse------");
 		cos = new Course();
 		cos.setId(cosid);
-		pcourseManage.deletePreCourse(cos);
-		this.addPreCourse();
+		this.queryPreCourse();
+		if (pcoslist.size() != 0 && pcoslist.get(0).getStatus() == 0) {
+			pcourseManage.deletePreCourse(cos);
+			this.addPreCourse();
+		}
+		return "success";
 	}
 
 	public String queryAllPreCourseRelations() {
