@@ -25,12 +25,12 @@
 	<body>
 		<div id="bg">
 			<ul style="background-color:black" class="nav nav-tabs">
-				<li><a href="#"><strong>先修课程申请</strong></a></li>
+				<li><a href="#"><strong>新增课程申请</strong></a></li>
 				<li><a href="javascript:void(0);" onclick="Winopen('ADD')">新增</a></li>
 				<li><a href="javascript:void(0);" onclick="Winopen('MODIFY')">修改</a></li>
 				<li><a href="javascript:void(0);" onclick="Winopen('QUERY')">查询</a></li>
 				<li><a href="javascript:void(0);" onclick="Winopen('DELETE')">删除</a></li>
-				<li><a href="#">导出</a></li>	
+				<li><a href="javascript:void(0);" onclick="OutputToExcel()">导出</a></li>
 				<li class="pull-right"><a href="home">返回</a></li> 
 			</ul>
 			<table id="show" class="table table-hover table-bordered">
@@ -222,6 +222,13 @@
 		{
 			var myform=document.forms[0];
 			myform.action="precourse_queryPreCourse";
+			myform.method="post";
+			myform.submit();
+		}
+		function OutputToExcel()
+		{
+			var myform=document.forms[0];
+			myform.action="precourse_QueryPrecourseOutputToExcel";
 			myform.method="post";
 			myform.submit();
 		}

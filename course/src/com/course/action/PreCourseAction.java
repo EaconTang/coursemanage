@@ -1,13 +1,21 @@
 package com.course.action;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
 
 import com.course.entity.Course;
+import com.course.entity.Courseapply;
 import com.course.entity.PreCourse;
 import com.course.service.IPreCourseManage;
+import com.course.util.ExportExcelUtil;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class PreCourseAction extends ActionSupport{
@@ -211,10 +219,58 @@ public class PreCourseAction extends ActionSupport{
 		 * System.out.println(pcoslist.get(i).getPcos() + ' ' +
 		 * pcoslist.get(i).getOp()); }
 		 */
+		//queryPreCourseResultString();
 		queryPreCourseResultList();
+		ActionContext.getContext().getSession().put("table",reslist);
 		return "success";
 	}
+	
+	/*
+	public void queryPreCourseResultString() {
+		if (pcoslist.isEmpty())
+			return;
+		PreCourse lastrecord = new PreCourse();
+		lastrecord.setGroup_number(-1);
+		PreCourse currentrecord = new PreCourse();
+		res = "";
+		StringBuffer resbuff = new StringBuffer();
+		for (int i = 0; i < pcoslist.size(); i++) {
 
+			if (lastrecord.getGroup_number() == -1) {
+				currentrecord = pcoslist.get(i);
+				// res += "Course " + currentrecord.getCourse() + ": ( " +
+				// currentrecord.getPcos() + " ";
+				resbuff.append("Course ").append(currentrecord.getCos().getId()).append(": ( ")
+						.append(currentrecord.getPcos()).append(" ");
+				lastrecord = pcoslist.get(i);
+			} else {
+				currentrecord = pcoslist.get(i);
+				if (currentrecord.getGroup_number() != lastrecord.getGroup_number()) {
+					// res += ") " + ((lastrecord.getOp() == 1) ? "and" : "or")
+					// + " ( " + currentrecord.getPcos() + " ";
+					resbuff.append(") ").append((lastrecord.getOp() == 1) ? "and" : "or").append(" ( ")
+							.append(currentrecord.getPcos()).append(" ");
+				} else {
+					// res += ((lastrecord.getOp() == 1) ? "and" : "or") + " " +
+					// currentrecord.getPcos() + " ";
+					resbuff.append((lastrecord.getOp() == 1) ? "and" : "or").append(" ")
+							.append(currentrecord.getPcos()).append(" ");
+				}
+
+			}
+			lastrecord = currentrecord;
+			if (lastrecord.getOp() == -1) {
+				// res += ")\n";
+				resbuff.append(")\n");
+				lastrecord.setGroup_number(-1);
+			}
+		}
+		// res += ")";
+		res = resbuff.toString();
+		System.out.println(res);
+
+	}
+	*/
 
 	public void queryPreCourseResultList() {
 		if (pcoslist.isEmpty())
@@ -268,6 +324,7 @@ public class PreCourseAction extends ActionSupport{
 			System.out.println("" + ctmp.getId() + " " + ctmp.getC_course_name() + " " + ctmp.getInfo()
 					+" "+ctmp.getStatus());
 		}
+		
 
 	}
 
@@ -294,8 +351,59 @@ public class PreCourseAction extends ActionSupport{
 	public String queryAllPreCourseRelations() {
 		System.out.println("------queryAllPreCourse------");
 		pcoslist = pcourseManage.queryAllPreCourseRelations();
+		//queryPreCourseResultString();
 		queryPreCourseResultList();
+		ActionContext.getContext().getSession().put("table",reslist);
 		return "success";
 	}
 
+	public String QueryPrecourseOutputToExcel(){
+		List<Course> tem = (List<Course>)ActionContext.getContext().getSession().get("table");
+		//courseapplys = new ArrayList<Courseapply>();
+		//courseapplys = courseapplyManage.queryCourseapply(courseapply);
+		
+		ExportExcelUtil ex = new ExportExcelUtil();
+		String title = "先修关系";
+		String[] headers = { "课程号","课程中文名","先修关系","状态"};
+        List<String[]> dataset = new ArrayList<String[]>(); 
+        for(int i=0;i<tem.size();i++) {
+        	Course temp = tem.get(i); 
+        	dataset.add(new String[]{temp.getId() + "",temp.getC_course_name() + "",temp.getInfo()+"",temp.getStatus()});
+        }
+        /*
+        OutputStream out = null;
+		try {
+			out = new FileOutputStream("C://output.xls");
+			ex.exportExcel(title,headers, dataset, out);
+		    out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		*/
+        HttpServletResponse response = null;//创建一个HttpServletResponse对象 
+		OutputStream out = null;//创建一个输出流对象 
+		try { 
+			response = ServletActionContext.getResponse();//初始化HttpServletResponse对象 
+			out = response.getOutputStream();//
+			response.setHeader("Content-disposition","attachment; filename="+"PreCourse.xls");//filename是下载的xls的名，建议最好用英文 
+			response.setContentType("application/msexcel;charset=UTF-8");//设置类型 
+			response.setHeader("Pragma","No-cache");//设置头 
+			response.setHeader("Cache-Control","no-cache");//设置头 
+			response.setDateHeader("Expires", 0);//设置日期头  
+			String rootPath = ServletActionContext.getServletContext().getRealPath("/");
+			ex.exportExcel(rootPath,title,headers, dataset, out);
+			out.flush();
+		} catch (IOException e) { 
+			e.printStackTrace(); 
+		}finally{
+			try{
+				if(out!=null){ 
+					out.close(); 
+				}
+			}catch(IOException e){ 
+				e.printStackTrace(); 
+			} 
+		}
+		return null;
+	}
 }

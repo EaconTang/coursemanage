@@ -33,19 +33,14 @@ public class CourseDaoImp implements ICourseDao {
 		Coursetype coursetype = new Coursetype();
 		
 		Subtype subtype = new Subtype();
-		if(cos.getSub_course_type() == 0)
-			cos.setSub_course_type(-1);
 		cos.setCoursetype(coursetype);
 		
 		Subtypemodule subtypemodule = new Subtypemodule();
-		if(cos.getSub_course_type() == 0)
-			cos.setSub_course_type(-1);
 		subtype.setId(cos.getSub_course_type());
 		
 		coursetype.setId(cos.getCourse_type());
-		if(cos.getSub_course_type_module() == 0)
-			cos.setSub_course_type_module(-1);
-		subtypemodule.setId(cos.getSub_course_type_module());
+		
+		subtypemodule.setId(cos.getSub_course_type_module()==0?999:cos.getSub_course_type_module());
 		
 		cos.setCoursetype(coursetype);
 		cos.setSubtype(subtype);
@@ -77,13 +72,9 @@ public class CourseDaoImp implements ICourseDao {
 			coursetype.setId(cos.getCourse_type());
 			
 			Subtype subtype = new Subtype();
-			if(cos.getSub_course_type() == 0)
-				cos.setSub_course_type(-1);
 			subtype.setId(cos.getSub_course_type());
 			
 			Subtypemodule subtypemodule = new Subtypemodule();
-			if(cos.getSub_course_type_module() == 0)
-				cos.setSub_course_type_module(-1);
 			subtypemodule.setId(cos.getSub_course_type_module());
 			
 			cos.setCoursetype(coursetype);
