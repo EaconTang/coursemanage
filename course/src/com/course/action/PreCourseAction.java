@@ -211,55 +211,10 @@ public class PreCourseAction extends ActionSupport{
 		 * System.out.println(pcoslist.get(i).getPcos() + ' ' +
 		 * pcoslist.get(i).getOp()); }
 		 */
-		queryPreCourseResultString();
 		queryPreCourseResultList();
 		return "success";
 	}
 
-	public void queryPreCourseResultString() {
-		if (pcoslist.isEmpty())
-			return;
-		PreCourse lastrecord = new PreCourse();
-		lastrecord.setGroup_number(-1);
-		PreCourse currentrecord = new PreCourse();
-		res = "";
-		StringBuffer resbuff = new StringBuffer();
-		for (int i = 0; i < pcoslist.size(); i++) {
-
-			if (lastrecord.getGroup_number() == -1) {
-				currentrecord = pcoslist.get(i);
-				// res += "Course " + currentrecord.getCourse() + ": ( " +
-				// currentrecord.getPcos() + " ";
-				resbuff.append("Course ").append(currentrecord.getCos().getId()).append(": ( ")
-						.append(currentrecord.getPcos()).append(" ");
-				lastrecord = pcoslist.get(i);
-			} else {
-				currentrecord = pcoslist.get(i);
-				if (currentrecord.getGroup_number() != lastrecord.getGroup_number()) {
-					// res += ") " + ((lastrecord.getOp() == 1) ? "and" : "or")
-					// + " ( " + currentrecord.getPcos() + " ";
-					resbuff.append(") ").append((lastrecord.getOp() == 1) ? "and" : "or").append(" ( ")
-							.append(currentrecord.getPcos()).append(" ");
-				} else {
-					// res += ((lastrecord.getOp() == 1) ? "and" : "or") + " " +
-					// currentrecord.getPcos() + " ";
-					resbuff.append((lastrecord.getOp() == 1) ? "and" : "or").append(" ")
-							.append(currentrecord.getPcos()).append(" ");
-				}
-
-			}
-			lastrecord = currentrecord;
-			if (lastrecord.getOp() == -1) {
-				// res += ")\n";
-				resbuff.append(")\n");
-				lastrecord.setGroup_number(-1);
-			}
-		}
-		// res += ")";
-		res = resbuff.toString();
-		System.out.println(res);
-
-	}
 
 	public void queryPreCourseResultList() {
 		if (pcoslist.isEmpty())
@@ -339,7 +294,6 @@ public class PreCourseAction extends ActionSupport{
 	public String queryAllPreCourseRelations() {
 		System.out.println("------queryAllPreCourse------");
 		pcoslist = pcourseManage.queryAllPreCourseRelations();
-		queryPreCourseResultString();
 		queryPreCourseResultList();
 		return "success";
 	}

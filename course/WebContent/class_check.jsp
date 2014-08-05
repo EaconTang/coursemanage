@@ -89,9 +89,14 @@
 		            	<tbody class="text-center">
 							<tr>
 								<td><input id="pk" type="text" name="courseapply.id"></td>
-								<td><input id="ic" type="text" name="courseapply.status"/></td>
+								<td>
+									<select name="courseapply.status" class="form-control">
+										<option value="审批通过">审批通过</option>
+										<option value="审批不通过">审批不通过</option>
+									</select>
+								</td>
 								<td><input type="text" name="courseapply.c_course_name"></td>
-								<td><input type="text" name="courseapply.institute_course_id"></td>
+								<td><input type="text" name="courseapply.institute_course"></td>
 								<td><input type="text" name="courseapply.e_course_name"></td>
 								<td><input type="text" name="courseapply.brief_course_name"/></td>
 							</tr>

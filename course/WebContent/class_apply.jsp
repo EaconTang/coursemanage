@@ -50,6 +50,7 @@
 						<th class="text-center">简介</th>
 						<th class="text-center">课程负责人</th>
 						<th class="text-center">是否学位课</th>
+		            	<th class="text-center">状态</th>
 					</tr>
 	            </thead>
 	            <tbody class="text-center">
@@ -70,6 +71,7 @@
 		                    <td><s:property value="#courseapply.course_info"/></td>
 		                    <td><s:property value="#courseapply.course_head"/></td>
 		                    <td><s:property value="#courseapply.degree"/></td>
+		                	<td><s:property value="#courseapply.status"/></td>
 		                </tr>
 		        	</s:iterator>
 				</tbody>
@@ -128,12 +130,7 @@
 								<td><input type="text" name="courseapply.course_time"/></td>
 								<td><input type="text" name="courseapply.course_time_info"></td>
 								<td><input type="text" name="courseapply.course_info"></td>
-								<td>
-									<select name="courseapply.course_head" class="form-control">
-										<option value="学位课">学位课</option>
-										<option value="非学位课">非学位课</option>
-									</select>
-								</td>
+								<td><input type="text" name="courseapply.course_head"></td>
 								<td>
 									<select name="courseapply.degree" class="form-control">
 										<option value="学位课">学位课</option>

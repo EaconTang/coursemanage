@@ -25,13 +25,12 @@
 	<body>
 		<div id="bg">
 			<ul style="background-color:black" class="nav nav-tabs">
-				<li><a href="#"><strong>新增课程申请</strong></a></li>
+				<li><a href="#"><strong>先修课程申请</strong></a></li>
 				<li><a href="javascript:void(0);" onclick="Winopen('ADD')">新增</a></li>
 				<li><a href="javascript:void(0);" onclick="Winopen('MODIFY')">修改</a></li>
 				<li><a href="javascript:void(0);" onclick="Winopen('QUERY')">查询</a></li>
 				<li><a href="javascript:void(0);" onclick="Winopen('DELETE')">删除</a></li>
 				<li><a href="#">导出</a></li>	
-				<li><a href="#">提交</a></li>	
 				<li class="pull-right"><a href="home">返回</a></li> 
 			</ul>
 			<table id="show" class="table table-hover table-bordered">
@@ -40,6 +39,7 @@
 						<th class="text-center">课程号</th>
 						<th class="text-center">课程中文名</th>
 						<th class="text-center">先修关系</th>
+						<th class="text-center">状态</th>
 					</tr>
 				</thead>
 				<tbody class="text-center">
@@ -48,6 +48,7 @@
 		                    <td><s:property value="#course.id"/></td>
 		                    <td><s:property value="#course.c_course_name"/></td>
 		                    <td><s:property value="#course.info"/></td>
+		                    <td><s:property value="#course.status"/></td>
 		                </tr>
 		        	</s:iterator>
 				</tbody>
