@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- 主机: localhost
--- 生成日期: 2014 年 08 月 05 日 09:17
+-- 生成日期: 2014 年 08 月 05 日 14:19
 -- 服务器版本: 5.0.51
 -- PHP 版本: 5.2.6
 
@@ -34,6 +34,4 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` VALUES (1, 'super', '123', 'super');
 INSERT INTO `user` VALUES (2, 'admin', '123', 'admin');
-INSERT INTO `user` VALUES (3, 'root', '123', 'root');
-INSERT INTO `user` VALUES (4, 'college', '123', 'college');
-INSERT INTO `user` VALUES (5, 'public', '123', 'public');
+INSERT INTO `user` VALUES (3, 'college', '123', 'college');
