@@ -189,7 +189,7 @@ public class CourseDaoImp implements ICourseDao {
 				+ cos.getCourse_time_info() + "\t" + "course_info:"
 				+ cos.getCourse_info() + "\t" + "course_head:"
 				+ cos.getCourse_head() + "\t" + "approval_time:"
-				+ cos.getApproval_time() + "\t" + "degree:" + cos.isDegree()
+				+ cos.getApproval_time() + "\t" + "degree:" + cos.getDegree()
 				+ "\t" + "status:" + cos.getStatus() + "\t" + "info:"
 				+ cos.getInfo() + "\n");
 

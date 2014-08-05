@@ -42,8 +42,8 @@ public class CoursetypeActionTest {
 		temp.setTypecore("sd");
 		temp.setQuality("d");
 		temp.setType("sss");
-		temp.setReexamine(false);
-		temp.setRetake(true);
+		temp.setReexamine("false");
+		temp.setRetake("true");
 		test.setCoursetype(temp);
 		test.addCoursetype();
 	}
@@ -57,8 +57,8 @@ public class CoursetypeActionTest {
 		temp.setTypecore("a");
 		temp.setQuality("b");
 		temp.setType("c");
-		temp.setReexamine(true);
-		temp.setRetake(false);
+		temp.setReexamine("true");
+		temp.setRetake("false");
 		test.setCoursetype(temp);
 		test.modifyCoursetype();
 	}
@@ -71,7 +71,7 @@ public class CoursetypeActionTest {
 		System.out.println(list.size());
 		for(int i=0;i<list.size();i++){
 			System.out.println( list.get(i).getId()+"\t"+list.get(i).getTypecore()+"\t"+list.get(i).getType()+
-					"\t"+list.get(i).getQuality()+"\t"+list.get(i).isReexamine()+"\t"+list.get(i).isRetake()+"\n");
+					"\t"+list.get(i).getQuality()+"\t"+list.get(i).getReexamine()+"\t"+list.get(i).getRetake()+"\n");
 		}
 	}
 	

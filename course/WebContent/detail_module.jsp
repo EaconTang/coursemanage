@@ -35,9 +35,9 @@
 	            <thead>
 		            <tr>
 		            	 
-		            	<th class="text-center">序号</th>
+		            	<th class="text-center">id</th>
 		                <th class="text-center">课程类别细类模块名称</th>
-					<!-- 	<th class="text-center">课程细类码</th>  -->
+						<th class="text-center">课程细类码</th>
 						<th class="text-center">课程细类名称</th>
 						<th class="text-center">课程类别</th>						
 						<th class="text-center">版本号</th>
@@ -49,7 +49,7 @@
 		                <tr>
 		                    <td><s:property value="#subtypemodule.id"/></td>
 		                    <td><s:property value="#subtypemodule.module_name"/></td>
-		               <!--     <td><s:property value="#subtypemodule.subtype.id"/></td>  -->
+		               		<td><s:property value="#subtypemodule.subtype_code"/></td>
 		                    <td><s:property value="#subtypemodule.subtype.id"/></td>
 		                    <td><s:property value="#subtypemodule.coursetype.id"/></td>
 		                    <td><s:property value="#subtypemodule.version"/></td>
@@ -64,9 +64,9 @@
 				<table id="cin" class="table table-bordered">
 					<thead>
 			            <tr>
-			            	<th class="text-center">序号</th>
+			            	<th class="text-center">id</th>
 			                <th class="text-center">课程类别细类模块名称</th>
-						<!--		<th class="text-center">课程细类码</th>   -->
+							<th class="text-center">课程细类码</th>
 							<th class="text-center">课程细类名称</th>
 						</tr>
 					</thead>
@@ -74,7 +74,7 @@
 						<tr>
 							<td><input id="pk" type="text" name="subtypemodule.id"></td>
 							<td><input id="mn" type="text" name="subtypemodule.module_name"></td>
-						<!-- 	<td><input type="text" name="subtypemodule.subtype_code"></td>   -->
+							<td><input type="text" name="subtypemodule.subtype_code"></td>
 							<td><input type="text" name="subtypemodule.subtype_name"/></td>
 						</tr>
 					</tbody>

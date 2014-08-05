@@ -43,7 +43,7 @@ public class CourseapplyDaoImp implements ICourseapplyDao {
 		courseapply.setSubtype(subtype);
 		courseapply.setSubtypemodule(subtypemodule);
 		
-		courseapply.setStatus(0);
+		courseapply.setStatus("未提交");
 		this.getSession().save(courseapply);
 	}
 	
@@ -86,7 +86,7 @@ public class CourseapplyDaoImp implements ICourseapplyDao {
 	@Override
 	public List<Courseapply> queryAllCourseapply() {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Courseapply.class);
-		criteria.add(Restrictions.or(Restrictions.eq("status", 0),Restrictions.eq("status", 1)));
+		criteria.add(Restrictions.or(Restrictions.eq("status", "未提交")));
 		List<Courseapply> list = criteria.list();
 		return list;
 	}
@@ -102,7 +102,7 @@ public class CourseapplyDaoImp implements ICourseapplyDao {
 		//temp.setCourseapply(courseapply);
 		if(temp != null){
 			
-			temp.setStatus(2);
+			temp.setStatus("待审批");
 		}
 		System.out.println(temp.getId()+" "+temp.getBrief_course_name()+"  "+temp.getStatus());
 				
@@ -155,7 +155,7 @@ public class CourseapplyDaoImp implements ICourseapplyDao {
 			criteria.add(Restrictions.eq("subtypemodule.id",
 					courseapply.getSub_course_type_module()));
 		}
-		criteria.add(Restrictions.or(Restrictions.eq("status", 0),Restrictions.eq("status", 1)));
+		criteria.add(Restrictions.eq("status", "未提交"));
 
 		List<Courseapply> list = criteria.list();
 		return list;
@@ -168,7 +168,10 @@ public class CourseapplyDaoImp implements ICourseapplyDao {
 	@Override
 	public List<Courseapply> queryAllCourseapproval(){
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Courseapply.class);
-		criteria.add(Restrictions.or(Restrictions.eq("status", 2),Restrictions.eq("status", 3)));
+		//criteria.add(Restrictions.eq("status", "待审批"));
+		//criteria.add(Restrictions.eq("status", "审批未通过"));
+		//criteria.add(Restrictions.eq("status", "审批通过"));
+		criteria.add(Restrictions.or(Restrictions.eq("status", "待审批"),Restrictions.eq("status", "审批未通过"),Restrictions.eq("status", "审批通过")));
 		List<Courseapply> list = criteria.list();
 		return list;
 	}
@@ -183,7 +186,7 @@ public class CourseapplyDaoImp implements ICourseapplyDao {
 		if(temp != null){
 			
 			temp.setStatus(courseapply.getStatus());
-			if(temp.getStatus()==3){
+			if(temp.getStatus()=="审批通过"){
 				Date date = new Date();
 				courseapply.setApproval_time(date);
 				Course cos = new Course();
@@ -258,8 +261,8 @@ Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Courseappl
 					courseapply.getSub_course_type_module()));
 		}
 		
-		criteria.add(Restrictions.or(Restrictions.eq("status", 2),Restrictions.eq("status", 3)));
-		criteria.addOrder(Order.asc("status"));
+		criteria.add(Restrictions.or(Restrictions.eq("status", "待审批"),Restrictions.eq("status", "审批未通过"),Restrictions.eq("status", "审批通过")));
+
 		List<Courseapply> list = criteria.list();
 		if(list != null)
 			System.out.println("error list");

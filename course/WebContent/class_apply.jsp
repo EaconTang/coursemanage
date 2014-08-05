@@ -34,7 +34,7 @@
 			<table id="show" class="table table-hover table-bordered">
 				<thead>
 		            <tr>
-		            	<th class="text-center">序号</th>
+		            	<th class="text-center">id</th>
 		                <th class="text-center">课程中文名</th>
 		            	<th class="text-center">院系课程号</th>
 						<th class="text-center">课程英文名</th>
@@ -80,7 +80,7 @@
 					<table id="cin" class="table table-bordered">
 						<thead>
 				            <tr>
-				            	<th class="text-center">序号</th>
+				            	<th class="text-center">id</th>
 				                <th class="text-center">课程中文名</th>
 				            	<th class="text-center">院系课程号</th>
 								<th class="text-center">课程英文名</th>
@@ -127,7 +127,7 @@
 						<tbody>
 							<tr>
 								<td><input type="text" name="courseapply.course_time_info"></td>
-								<td><input type="text" name="courseapply.info"></td>
+								<td><input type="text" name="courseapply.course_info"></td>
 								<td><input type="text" name="courseapply.course_head"/></td>
 								<td><input type="text" name="courseapply.degree"></td>
 							</tr>

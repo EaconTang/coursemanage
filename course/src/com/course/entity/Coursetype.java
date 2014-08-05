@@ -7,8 +7,8 @@ public class Coursetype {
 	private String typecore;
 	private String type;
 	private String quality;
-	private boolean reexamine;//
-	private boolean retake;//
+	private String reexamine;//
+	private String retake;//
 	
 	private Set<Subtype> subtype;
 	/*
@@ -75,22 +75,25 @@ public class Coursetype {
 		this.quality = quality;
 	}
 
-	public boolean isReexamine() {
+	
+	
+	public String getReexamine() {
 		return reexamine;
 	}
 
-	public void setReexamine(boolean reexamine) {
+	public void setReexamine(String reexamine) {
 		this.reexamine = reexamine;
 	}
 
-	public boolean isRetake() {
+	public String getRetake() {
 		return retake;
 	}
 
-	public void setRetake(boolean retake) {
+	public void setRetake(String retake) {
 		this.retake = retake;
 	}
-	
+
+	/*
 	public String returnReexamine(){
 		if(isReexamine() == true)
 			return "true";
@@ -102,4 +105,5 @@ public class Coursetype {
 			return "true";
 		return "false";
 	}
+	*/
 }

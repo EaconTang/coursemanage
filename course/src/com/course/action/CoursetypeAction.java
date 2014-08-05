@@ -108,7 +108,7 @@ public class CoursetypeAction extends ActionSupport  {
         List<String[]> dataset = new ArrayList<String[]>(); 
         for(int i=0;i<tem.size();i++) {
         	Coursetype temp = tem.get(i); 
-        	dataset.add(new String[]{temp.getId() + "",temp.getTypecore()+ "",temp.getType()+ "",temp.getQuality()+ "",temp.returnReexamine()+ "",temp.returnRetake()});
+        	dataset.add(new String[]{temp.getId() + "",temp.getTypecore()+ "",temp.getType()+ "",temp.getQuality()+ "",temp.getReexamine()+ "",temp.getRetake()});
         }
        
         HttpServletResponse response = null;//创建一个HttpServletResponse对象 

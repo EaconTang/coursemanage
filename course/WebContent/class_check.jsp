@@ -25,12 +25,13 @@
 				<li><a href="#"><strong>新增课程审批</strong></a></li>
 				<li><a href="javascript:void(0);" onclick="Winopen('MODIFY')">审批</a></li>
 				<li><a href="javascript:void(0);" onclick="Winopen('QUERY')">查询</a></li>
+				<li><a href="javascript:void(0);" onclick="OutputToExcel()">导出</a></li>
 				<li class="pull-right"><a href="home">返回</a></li> 
 			</ul>
 			<table id="show" class="table table-hover table-bordered">
 				<thead>
 		            <tr>
-		            	<th class="text-center">序号</th>
+		            	<th class="text-center">id</th>
 		            	<th class="text-center">状态</th>
 		                <th class="text-center">课程中文名</th>
 		            	<th class="text-center">院系课程号</th>
@@ -78,7 +79,7 @@
 					<table id="cin" class="table table-bordered">
 						<thead>
 				            <tr>
-				            	<th class="text-center">序号</th>
+				            	<th class="text-center">id</th>
 				            	<th class="text-center">状态</th>
 				                <th class="text-center">课程中文名</th>
 				            	<th class="text-center">院系课程号</th>
@@ -257,6 +258,13 @@
 		{
 			var myform=document.forms[0];
 			myform.action="courseapproval_queryCourseapproval";
+			myform.method="post";
+			myform.submit();
+		}
+		function OutputToExcel()
+		{
+			var myform=document.forms[0];
+			myform.action="courseapply_QueryCourseapprovalOutputToExcel";
 			myform.method="post";
 			myform.submit();
 		}

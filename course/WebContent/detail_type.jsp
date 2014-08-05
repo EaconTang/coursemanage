@@ -32,7 +32,7 @@
 			<table id="show" class="table table-hover table-bordered">
 				<thead>
 					<tr>
-						<th class="text-center">序号</th>
+						<th class="text-center">id</th>
 						<th class="text-center">课程类别细类码</th>
 						<th class="text-center">课程类别细类名称</th>
 						<th class="text-center">所属课程类别</th>
@@ -60,7 +60,7 @@
 				<table id="cin" class="table table-bordered">
 					<thead>
 						<tr>
-							<th class="text-center">序号</th>
+							<th class="text-center">id</th>
 							<th class="text-center">课程类别细类码</th>
 							<th class="text-center">课程类别细类名称</th>
 							<th class="text-center">所属课程类别</th>
